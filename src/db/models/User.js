@@ -1,9 +1,10 @@
+/** Dependencies */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 
 /** Relations */
-const Rol = require("../models").Rol;
+const Rol = require("./Rol");
 
 const userSchema = new Schema(
   {
@@ -49,6 +50,15 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+/** Methods */
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) return callback(err);
+    callback(null, isMatch);
+  });
+};
+
+/** Middlewares */
 userSchema.pre("save", function(next) {
   var user = this;
   if (!user.password) {
@@ -72,13 +82,6 @@ userSchema.pre("save", function(next) {
     });
   }
 });
-
-userSchema.methods.comparePassword = function(candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return callback(err);
-    callback(null, isMatch);
-  });
-};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

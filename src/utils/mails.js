@@ -1,3 +1,4 @@
+/** Dependencies */
 var nodemailer = require("nodemailer");
 var logger = require('./logger');
 

@@ -1,6 +1,8 @@
+/** Dependencies */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+/** Relations */
 const User = require("./User");
 
 const stateSchema = new Schema(

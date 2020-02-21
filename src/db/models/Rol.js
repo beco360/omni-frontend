@@ -1,10 +1,13 @@
+/** Dependencies */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Permission = require("../models").Permission;
+
+/** Relations */
+const Permission = require("./Permission");
 
 const rolSchema = new Schema(
   {
-    rol: {
+    name: {
       type: String,
       required: true,
       unique: true

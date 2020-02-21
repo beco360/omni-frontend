@@ -1,5 +1,8 @@
+/** Dependencies */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+/** Relations */
 const User = require("./User");
 
 const chatSchema = new Schema(
@@ -26,7 +29,7 @@ const chatSchema = new Schema(
   { timestamps: true }
 );
 
-/** Middleware */
+/** Middlewares */
 chatSchema.pre("save", function(next) {
   if (!this.subscription_date) {
     this.subscription_date = new Date();

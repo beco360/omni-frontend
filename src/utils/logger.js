@@ -1,9 +1,9 @@
 /**
  * logger.js
  *
- * Se usa WinstonJS para el manejo de logs
- * siguiendo los siguientes niveles de riesgo
- * definidos en https://tools.ietf.org/html/rfc5424
+ * Se usa WinstonJS para el manejo de logs siguiendo
+ * los siguientes niveles de riesgo definidos en el
+ * estandar => https://tools.ietf.org/html/rfc5424
  *
  *  0       emerg: el sistema no se puede usar
  *  1       alert: se deben tomar medidas de inmediato
@@ -13,14 +13,18 @@
  *  5       notice: condición normal pero significativa
  *  6       info: mensajes informativos
  *  7       debug: mensajes de nivel de depuración
- *
  */
 
+/** Dependencies */
 const winston = require("winston");
 const path = require("path");
 const moment = require("moment");
 
+/** Utilities */
 const utilMails = require("./mails");
+
+/** Global variables */
+var logger = null;
 
 class Logger {
   constructor() {
@@ -39,6 +43,9 @@ class Logger {
       transports: []
     });
 
+    // Cuando la app se encuentra en producción se guardaran los logs en un archivo
+    // Cuando la app se encuentra en producción se enviaran correos desde "error" para notificar los motivos
+    // Si la app no se encuentra en producción se imprimiran los logs en consola pero no se guardaran
     if (process.env.NODE_ENV == "production") {
       this.logger.add(
         new winston.transports.File({
@@ -63,7 +70,7 @@ class Logger {
     }
   }
   emerg(msg) {
-    if (process.env.NODE_ENV != "production") {
+    if (process.env.NODE_ENV == "production") {
       utilMails.sendMail(
         "devops.it@cos.com.co",
         "Emergencia en bothuman",
@@ -77,7 +84,7 @@ class Logger {
     this.logger.emerg(msg);
   }
   alert(msg) {
-    if (process.env.NODE_ENV != "production") {
+    if (process.env.NODE_ENV == "production") {
       utilMails.sendMail(
         "devops.it@cos.com.co",
         "Alerta en bothuman",
@@ -91,7 +98,7 @@ class Logger {
     this.logger.alert(msg);
   }
   crit(msg) {
-    if (process.env.NODE_ENV != "production") {
+    if (process.env.NODE_ENV == "production") {
       utilMails.sendMail(
         "devops.it@cos.com.co",
         "Nuevo fallo critico en bothuman",
@@ -105,7 +112,7 @@ class Logger {
     this.logger.crit(msg);
   }
   error(msg) {
-    if (process.env.NODE_ENV != "production") {
+    if (process.env.NODE_ENV == "production") {
       utilMails.sendMail(
         "devops.it@cos.com.co",
         "Error en bothuman",
@@ -132,9 +139,13 @@ class Logger {
   }
 }
 
-module.exports = new Logger();
+if (!logger) {
+  logger = new Logger();
+}
+
+module.exports = logger;
 module.exports.stream = {
   write: function(message, encoding) {
     new Logger().info(message);
   }
-};
+}; // Se usa para morgan
