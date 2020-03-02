@@ -3,29 +3,18 @@ const mongoose = require("mongoose");
 const logger = require("../utils/logger");
 
 /** Global variables */
-var db = null; // Singleton
+const DB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 
-module.exports = function setupDatabase() {
-  if (!db) {
-    try {
-      db = mongoose.connect(
-        `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
-        {
-          useCreateIndex: true,
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        }
-      );
+module.exports = async function () {
+  await mongoose.connect(DB_URI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+    .then(() => {
       logger.info("Database connected successfully");
-    } catch (error) {
-      logger.alert(`Database connection failed: ${err}`);
-    }
-  }
-
-  /** Escucha los errores posteriores a que se establecio la conexión */
-  mongoose.connection.on("error", err => {
-    logger.error(`Error on database: ${err}`);
-  });
-
-  return db;
+    })
+    .catch(error => {
+      logger.alert(`Database connection failed: ${error.message}`);
+    });
 };

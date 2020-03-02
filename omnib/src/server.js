@@ -6,9 +6,13 @@ const initSocketIO = require("./sockets");
 const initDatabase = require("./db");
 
 /** Start the server */
-const server = app.listen(app.get("PORT"), () => {
-  logger.info(`Listen on ${process.env.HOST}`);
-});
-
-initSocketIO(server);
-initDatabase();
+(
+  async function () {
+    const server = await app.listen(app.get("PORT"), () => {
+      logger.info(`Listen on ${process.env.HOST}`);
+    });
+    
+    initSocketIO(server);
+    initDatabase();
+  }
+)();

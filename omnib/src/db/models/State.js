@@ -1,3 +1,8 @@
+/**
+ *  Modelo para manejar la cantidad de tiempo que
+ *  cada agente estuvo en algún estado.
+ */
+
 /** Dependencies */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -25,6 +30,6 @@ const stateSchema = new Schema(
   { timestamps: true }
 );
 
-const State = mongoose.model("State", stateSchema);
+const State = mongoose.model("states", stateSchema);
 
 module.exports = State;

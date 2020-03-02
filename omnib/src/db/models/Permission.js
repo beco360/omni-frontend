@@ -13,6 +13,6 @@ const permissionSchema = new Schema(
   { timestamps: true }
 );
 
-const Permission = mongoose.model("Permission", permissionSchema);
+const Permission = mongoose.model("permissions", permissionSchema);
 
 module.exports = Permission;

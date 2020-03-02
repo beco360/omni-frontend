@@ -4,7 +4,9 @@ import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
+import auth from './auth';
+
+let routes = [
   {
     path: '/',
     name: 'Home',
@@ -19,6 +21,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
 ];
+
+routes = routes.concat(auth);
 
 const router = new VueRouter({
   routes,

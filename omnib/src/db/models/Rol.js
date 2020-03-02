@@ -22,5 +22,11 @@ const rolSchema = new Schema(
   { timestamps: true }
 );
 
-const Rol = mongoose.model("Rol", rolSchema);
+const Rol = mongoose.model("roles", rolSchema);
+
+(
+  async function (params) {
+    await Rol.init();
+  }
+)();
 module.exports = Rol;
