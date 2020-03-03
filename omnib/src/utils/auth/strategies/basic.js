@@ -1,5 +1,6 @@
 const passport = require('passport');
 const { BasicStrategy } = require('passport-http');
+const boom = require('@hapi/boom');
 
 const User = require('../../../db/models/User');
 
@@ -7,21 +8,17 @@ passport.use(new BasicStrategy(async (email, password, cb) => {
     try {
         const user = await User.findOne({ email });
         if (!user) {
-            return cb(null, false, {
-                error: 'No user found'
-            })
+            return cb(boom.unauthorized(), false)
         }
 
         user.comparePassword(password, (err, isMatch) => {
             delete user.password;
 
             if (err) {
-                return cb(err, false);
+                return cb(err);
             }
             if (!isMatch) {
-                return cb(null, false, {
-                    error: "The password is not correct."
-                })
+                return cb(boom.unauthorized(), false)
             }
 
             if (isMatch) {
@@ -29,6 +26,6 @@ passport.use(new BasicStrategy(async (email, password, cb) => {
             }
         });
     } catch (error) {
-        return cb(error.message);
+        return cb(error);
     }
 }));

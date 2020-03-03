@@ -1,5 +1,6 @@
 const passport = require('passport');
 const { Strategy, ExtractJwt } = require('passport-jwt');
+const boom = require('@hapi/boom');
 
 const User = require('../../../db/models/User');
 
@@ -14,14 +15,11 @@ passport.use(
                 const user = await User.find({ email: tokenPayload.email });
 
                 if (!user) {
-                    return cb(null, false, {
-                        error: 'User not found'
-                    });
+                    return cb(boom.unauthorized(), false);
                 }
 
                 delete user.password;
-
-                cb(null, { ...user, scopes: tokenPayload.scopes });
+                cb(null, { ...user, permissions: tokenPayload.permissions });
 
             } catch (error) {
                 return cb(error);

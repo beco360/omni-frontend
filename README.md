@@ -5,4 +5,10 @@ RUN: node -r dotenv/config omnib\src\utils\scripts\mongo\seedAdminUser.js
 RUN: node -r dotenv/config omnib\src\utils\scripts\mongo\seedApiKeys.js
 When you run this script, you have to go to your database and copy the tokens in the .env file
 
+# Kill port in Windows
+netstat -ano | findStr 3000
+// Get the process id
+taskkill /pid {processId} /f
 
+# Kill port in linux
+fuser -k tcp/3000
