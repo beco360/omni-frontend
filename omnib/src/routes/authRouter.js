@@ -48,7 +48,7 @@ router.post('/login', async (req, res, next) => {
 
                 // Si el atributo rememberMe es verdadero la expiración será en 30 dias
                 // de lo contrario la expiración será en 2 horas
-                res.cookie("token", token, {
+                res.cookie("token", token, {// ¿ Cookie parser?
                     httpOnly: process.env.NODE_ENV === 'production',
                     secure: process.env.NODE_ENV === 'production',
                     maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC

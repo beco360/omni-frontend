@@ -18,7 +18,7 @@ module.exports = function(server) {
 
     socket.on('new-chat', data => {
       
-    })
+    });
     // Get sockets connected
     // io.sockets.clients().server.engine.clientsCount
     // Object.keys(io.sockets.clients().connected).length

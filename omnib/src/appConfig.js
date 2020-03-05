@@ -1,9 +1,10 @@
 /** Dependencies */
 const express = require("express");
 const app = express();
-const path = require('path');
+const path = require("path");
 const logger = require("./utils/logger");
 const morgan = require("morgan");
+const helmet = require("helmet");
 
 /** Settings */
 app.set("PORT", process.env.PORT || 3000);
@@ -17,11 +18,12 @@ app.use(
     { stream: logger.stream }
   )
 ); // Listen petitions HTTP
-app.use(express.static(path.join(__dirname, 'dist'))); // Static folder
-app.use(express.static(path.join(__dirname, 'public'))); // Static folder
+app.use(express.static(path.join(__dirname, "dist"))); // Static folder
+app.use(express.static(path.join(__dirname, "public"))); // Static folder
+app.use(helmet());
 
 /** Routes */
-app.use('/api/auth', require('./routes/authRouter'));
-app.use('/api/chat', require('./routes/chat'));
+app.use("/api/auth", require("./routes/authRouter"));
+app.use("/api/chat", require("./routes/chat"));
 
 module.exports = app;
