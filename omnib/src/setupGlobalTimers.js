@@ -5,6 +5,7 @@ const logger = require("./utils/logger");
 
 class GlobalTimers {
   constructor() {
+    logger.info('Global timers initialized');
     this.usersStates = [];
   }
   addUserTimers(userId) {

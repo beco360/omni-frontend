@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('../../assets/base.css');
 .chat-item {
   background-color: #fff;
   height: 60px;
@@ -49,7 +50,7 @@ export default {
   font-weight: bolder;
 }
 .last-message {
-  color: #888888;
+  color: var(--secondary-color);
 }
 p {
   margin: 5px;
