@@ -1,14 +1,24 @@
-# Create a .env file, use the .env.example
-# Create an admin user (santiagoemp01@gmail.com)
-RUN: node -r dotenv/config omnib\src\utils\scripts\mongo\seedAdminUser.js
-# Create an apikeys
-RUN: node -r dotenv/config omnib\src\utils\scripts\mongo\seedApiKeys.js
-When you run this script, you have to go to your database and copy the tokens in the .env file
+# omnif
 
-# Kill port in Windows
-netstat -ano | findStr 3000
-// Get the process id
-taskkill /pid {processId} /f
+## Project setup
+```
+npm install
+```
 
-# Kill port in linux
-fuser -k tcp/3000
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
