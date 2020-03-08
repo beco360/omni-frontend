@@ -1,7 +1,7 @@
 <template>
-  <div class="home" style="height: 50vh;">
-    <ChatList style="width: 21vw;" :chatList="chatList" />
-    <Chat style="width: 79vw;" />
+  <div class="home" style="height: 94vh;">
+    <ChatList style="width: 20vw;" :chatList="chatList" />
+    <Chat style="width: 74vw;" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     return {
       chatList: [
         {
-          idConversation: 1,
+          id: 1,
           picture:
             "https://www.pngkey.com/png/full/787-7874978_doug-headshot-circular-douglas-carnine.png",
           user: {
@@ -32,7 +32,7 @@ export default {
           }
         },
         {
-          idConversation: 2,
+          id: 2,
           picture:
             "https://www.pngkey.com/png/full/787-7874978_doug-headshot-circular-douglas-carnine.png",
           user: {

@@ -1,10 +1,15 @@
 <template>
   <ul id="chat-list">
-    <li style="padding-bottom: 15px;">
-      <Search />
+    <li style="padding-bottom: 15px; padding-top: 15px;">
+      <Search style="display: flex; justify-content: center;" />
     </li>
     <li v-for="chat in chatList" :key="chat.idConversation">
-      <ChatListItem :picture="chat.picture" :user="chat.user" :lastMessage="chat.lastMessage" />
+      <ChatListItem
+        :id="chat.id"
+        :picture="chat.picture"
+        :user="chat.user"
+        :lastMessage="chat.lastMessage"
+      />
     </li>
   </ul>
 </template>
@@ -28,6 +33,6 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-right: 1px solid #d3d3d6;
+  border-right: 1px solid var(--primary-color-inactive);
 }
 </style>

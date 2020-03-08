@@ -1,14 +1,22 @@
 <template>
   <div class="vertical-menu">
-    <div>
-        Montechelo
-    </div>
-    <div>
-      <router-link to="/about">About</router-link>
-      <router-link to="/login">Iniciar sesión</router-link>
-      <router-link to="/signup">Signup</router-link>
-      <router-link to="/"><i class="fas fa-sliders-h"></i></router-link>
-    </div>
+    <img src="https://www.beco360.com/assets/brand/Logo.png" />
+    <router-link to="/inbox">
+      <i class="fas fa-inbox"></i>
+      <span>Inbox</span>
+    </router-link>
+    <router-link to="/mi">
+      <i class="fas fa-comments"></i>
+      <span>Me</span>
+    </router-link>
+    <router-link to="/history">
+      <i class="fas fa-history"></i>
+      <span>History</span>
+    </router-link>
+    <router-link to="/settings">
+      <i class="fas fa-sliders-h"></i>
+      <span>Settings</span>
+    </router-link>
   </div>
 </template>
 
@@ -17,27 +25,34 @@ export default {};
 </script>
 
 <style scoped>
-@import url("../assets/base.css");
 .vertical-menu {
   width: 80px; /* Set a width if you like */
   height: 100vh;
+  text-align: center;
+}
+
+.vertical-menu img {
+  padding-top: 10px;
+  height: 50px;
+  width: 50px;
 }
 
 .vertical-menu a {
-  color: var(--secondary-color);
+  color: var(--primary-color-inactive);
   display: block;
-  padding: 12px; /* Add some padding */
-  text-decoration: none; /* Remove underline from links */
+  padding: 12px;
+  text-decoration: none;
   text-align: center;
-  font-size: 25px;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc; /* Dark grey background on mouse-over */
+  font-size: 18px;
 }
 
 .vertical-menu a.router-link-exact-active {
-  background-color: #4caf50; /* Add a green color to the "active/current" link */
-  color: white;
+  color: var(--primary-color);
+}
+
+.vertical-menu a span {
+  display: block;
+  font-size: 15px;
+  font-weight: 100;
 }
 </style>

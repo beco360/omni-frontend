@@ -173,7 +173,7 @@ export default {
   width: auto;
   height: 100%;
   padding: 20px 7px;
-  background: #fff;
+  background: white;
   display: flex;
   align-content: center;
   justify-content: center;

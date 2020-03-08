@@ -20,7 +20,7 @@ export default {};
   text-align: left;
   padding-left: 30px;
   padding-top: 4px;
-  color: #ccc;
+  color: var(--text);
   font-family: Courier;
 }
 
@@ -32,10 +32,10 @@ export default {};
 .message-left .message-text {
   max-width: 80%;
   display: inline-block;
-  background: #f5f7fa;
+  background: var(--secondary-color);
   padding: 15px;
   font-size: 14px;
-  color: #000;
+  color: black;
   border-radius: 30px;
   font-weight: 100;
   line-height: 1.5em;

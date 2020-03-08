@@ -18,7 +18,7 @@ export default {};
   text-align: right;
   padding-right: 20px;
   padding-top: 4px;
-  color: #ccc;
+  color: var(--text-dark-grey);
   font-family: Courier;
 }
 
@@ -30,10 +30,10 @@ export default {};
 .message-right .message-text {
   line-height: 1.5em;
   display: inline-block;
-  background: #007bff;
+  background: var(--primary-color);
   padding: 15px;
   font-size: 14px;
-  color: #fff;
+  color: white;
   border-radius: 30px;
   line-height: 1.5em;
   font-weight: 100;

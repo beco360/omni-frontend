@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <VerticalNavBar />
-    <transition>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-    </transition>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,4 +14,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url("assets/base.css");
+#app {
+  height: 100vh;
+  display: flex;
+}
+</style>

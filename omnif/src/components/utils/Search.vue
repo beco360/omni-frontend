@@ -16,18 +16,19 @@ export default {};
 }
 .search {
   border: 0;
-  background: #f5f7fa;
+  background: var(--secondary-color);
   padding: 12px;
   width: 80%;
   border-radius: 10px;
-  color: #888;
+  color: var(--text-dark-grey);
 }
 .search:focus {
     outline: none;
 }
 i {
   position: absolute;
-  right: 30px;
+  right: 12%;
   top:12px;
+  color: var(--text-dark-grey);
 }
 </style>

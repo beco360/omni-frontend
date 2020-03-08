@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-item">
+  <div class="chat-item" @click="setActiveChat()" :class="{active: $store.state.activeChat === id}">
     <div class="profile-picture">
       <img :src="picture" height="60" width="60" />
     </div>
@@ -22,17 +22,23 @@
 <script>
 export default {
   props: {
+    id: Number,
     picture: String,
     user: Object,
     lastMessage: Object
+  },
+  methods: {
+    setActiveChat() {
+      this.$store.commit('setActiveChat', this.id)
+    }
   }
 };
 </script>
 
 <style scoped>
-@import url('../../assets/base.css');
+@import url("../../assets/base.css");
 .chat-item {
-  background-color: #fff;
+  background-color: white;
   height: 60px;
   display: flex;
   text-align: left;
@@ -40,17 +46,15 @@ export default {
   cursor: pointer;
   padding: 20px;
 }
-.chat-item:hover {
-  background-color: #f5f7fa;
+.active {
+  background-color: var(--primary-color-active);
+  color: white;
 }
 .last-message {
   display: flex;
 }
 .profile-name {
   font-weight: bolder;
-}
-.last-message {
-  color: var(--secondary-color);
 }
 p {
   margin: 5px;

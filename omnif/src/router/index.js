@@ -8,7 +8,7 @@ import auth from './auth';
 
 let routes = [
   {
-    path: '/',
+    path: '/inbox',
     name: 'Home',
     component: Home,
   },

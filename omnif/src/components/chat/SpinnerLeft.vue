@@ -26,7 +26,7 @@ export default {};
   display: inline-block;
   padding: 15px 20px;
   font-size: 14px;
-  color: #ccc;
+  color: var(--text-dark-grey);
   border-radius: 30px;
   line-height: 1.25em;
   font-weight: 100;
